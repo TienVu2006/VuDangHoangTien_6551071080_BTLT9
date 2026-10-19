@@ -1,0 +1,17 @@
+## Visual Studio / .NET build artifacts
+**/[Bb]in/
+**/[Oo]bj/
+**/.vs/
+**/*.user
+**/*.userosscache
+**/*.suo
+**/*.userprefs
+**/Logs/
+**/*.log
+
+## OS files
+desktop.ini
+Thumbs.db
+
+## Large files exceeding GitHub 100MB limit
+**/publish_self_contained/

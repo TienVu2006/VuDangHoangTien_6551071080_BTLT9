@@ -1,0 +1,15 @@
+## Bỏ qua file cấu hình chứa thông tin kết nối và mật khẩu nhạy cảm
+appsettings.json
+appsettings.Development.json
+
+## Không bỏ qua file mẫu
+!appsettings.example.json
+
+## Build and Output
+bin/
+obj/
+publish/
+
+## Logs
+Logs/
+*.log

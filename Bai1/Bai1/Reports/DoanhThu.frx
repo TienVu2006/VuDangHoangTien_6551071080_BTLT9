@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" DoublePass="true" ReportInfo.Created="10/12/2026 09:00:00" ReportInfo.Modified="10/12/2026 09:00:00" ReportInfo.CreatorVersion="2026.2.8.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="DoanhThu" ReferenceName="DoanhThu" DataType="System.Collections.Generic.List`1[[Bai1.Models.DoanhThuDong, Bai1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+      <Column Name="TenDanhMuc" DataType="System.String"/>
+      <Column Name="TenSanPham" DataType="System.String"/>
+      <Column Name="MaHoaDon" DataType="System.Int32"/>
+      <Column Name="NgayLap" DataType="System.DateTime"/>
+      <Column Name="SoLuong" DataType="System.Int32"/>
+      <Column Name="ThanhTien" DataType="System.Decimal"/>
+    </BusinessObjectDataSource>
+    <BusinessObjectDataSource Name="TongHop" ReferenceName="TongHop" DataType="System.Collections.Generic.List`1[[Bai1.Models.TongHopDanhMuc, Bai1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+      <Column Name="TenDanhMuc" DataType="System.String"/>
+      <Column Name="SoDong" DataType="System.Int32"/>
+      <Column Name="TongSoLuong" DataType="System.Int32"/>
+      <Column Name="TongTien" DataType="System.Decimal"/>
+    </BusinessObjectDataSource>
+    <Parameter Name="TenCuaHang" DataType="System.String" AsString="CỬA HÀNG DEMO CHƯƠNG 8"/>
+    <Parameter Name="DiaChiCuaHang" DataType="System.String" AsString="123 Đường Lập Trình, Quận 1, TP.HCM"/>
+    <Parameter Name="TuNgay" DataType="System.String" AsString="01/01/2026"/>
+    <Parameter Name="DenNgay" DataType="System.String" AsString="31/12/2026"/>
+    <Total Name="TongDoanhThu" Expression="[DoanhThu.ThanhTien]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TongSL" Expression="[DoanhThu.SoLuong]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TongTienNhom" Expression="[DoanhThu.ThanhTien]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TongSLNhom" Expression="[DoanhThu.SoLuong]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" LeftMargin="10" TopMargin="10" RightMargin="10" BottomMargin="10" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="94.5">
+      <TextObject Name="txtShopName" Left="0" Top="0" Width="350" Height="20" Text="[TenCuaHang]" Font="Segoe UI, 10pt, style=Bold" TextFill.Color="DarkSlateGray"/>
+      <TextObject Name="txtShopAddr" Left="0" Top="20" Width="400" Height="18" Text="[DiaChiCuaHang]" Font="Segoe UI, 8.5pt" TextFill.Color="DimGray"/>
+      <TextObject Name="txtTitle" Left="0" Top="42" Width="718.2" Height="30" Text="BÁO CÁO DOANH THU THEO DANH MỤC" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 16pt, style=Bold" TextFill.Color="DarkRed"/>
+      <TextObject Name="txtThoiGian" Left="0" Top="72" Width="718.2" Height="20" Text="Từ ngày: [TuNgay]  -  Đến ngày: [DenNgay]" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Italic" TextFill.Color="Gray"/>
+      <LineObject Name="lineTop" Left="0" Top="93" Width="718.2" Border.Color="LightSteelBlue" Border.Width="1.5"/>
+    </ReportTitleBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="98.5" Width="718.2" Height="62" Condition="[DoanhThu.TenDanhMuc]">
+      <TextObject Name="txtNhom" Left="0" Top="6" Width="718.2" Height="25" Border.Lines="Left, Bottom" Border.Color="SteelBlue" Border.Width="2" Fill.Color="AliceBlue" Text="  📁 DANH MỤC: [DoanhThu.TenDanhMuc]" VertAlign="Center" Font="Segoe UI, 10.5pt, style=Bold" TextFill.Color="DarkSlateBlue"/>
+      <TextObject Name="thHD" Left="0" Top="37" Width="80" Height="25" Border.Lines="All" Border.Color="LightGray" Fill.Color="LightSteelBlue" Text="Mã HĐ" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9.5pt, style=Bold"/>
+      <TextObject Name="thNgay" Left="80" Top="37" Width="110" Height="25" Border.Lines="All" Border.Color="LightGray" Fill.Color="LightSteelBlue" Text="Ngày Lập" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9.5pt, style=Bold"/>
+      <TextObject Name="thSP" Left="190" Top="37" Width="260" Height="25" Border.Lines="All" Border.Color="LightGray" Fill.Color="LightSteelBlue" Text="Tên Sản Phẩm" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9.5pt, style=Bold"/>
+      <TextObject Name="thSL" Left="450" Top="37" Width="80" Height="25" Border.Lines="All" Border.Color="LightGray" Fill.Color="LightSteelBlue" Text="Số Lượng" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9.5pt, style=Bold"/>
+      <TextObject Name="thTT" Left="530" Top="37" Width="188.2" Height="25" Border.Lines="All" Border.Color="LightGray" Fill.Color="LightSteelBlue" Text="Thành Tiền (VNĐ)" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9.5pt, style=Bold"/>
+      <DataBand Name="Data1" Top="164.5" Width="718.2" Height="24" DataSource="DoanhThu" EvenStylePriority="UseFill">
+        <TextObject Name="tbHD" Left="0" Top="0" Width="80" Height="24" Border.Lines="All" Border.Color="Gainsboro" Text="HD[DoanhThu.MaHoaDon]" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        <TextObject Name="tbNgay" Left="80" Top="0" Width="110" Height="24" Border.Lines="All" Border.Color="Gainsboro" Text="[DoanhThu.NgayLap]" Format="Date" Format.Format="dd/MM/yyyy" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        <TextObject Name="tbSP" Left="190" Top="0" Width="260" Height="24" Border.Lines="All" Border.Color="Gainsboro" Text=" [DoanhThu.TenSanPham]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        <TextObject Name="tbSL" Left="450" Top="0" Width="80" Height="24" Border.Lines="All" Border.Color="Gainsboro" Text="[DoanhThu.SoLuong]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt" Padding="0, 0, 8, 0"/>
+        <TextObject Name="tbTT" Left="530" Top="0" Width="188.2" Height="24" Border.Lines="All" Border.Color="Gainsboro" Text="[DoanhThu.ThanhTien]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt" Padding="0, 0, 10, 0"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="192.5" Width="718.2" Height="28">
+        <TextObject Name="txtTongNhomLabel" Left="0" Top="0" Width="450" Height="26" Border.Lines="All" Border.Color="LightGray" Fill.Color="GhostWhite" Text="Tổng nhóm [DoanhThu.TenDanhMuc]:" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold, Italic" TextFill.Color="DarkSlateGray" Padding="0, 0, 10, 0"/>
+        <TextObject Name="txtTongNhomSL" Left="450" Top="0" Width="80" Height="26" Border.Lines="All" Border.Color="LightGray" Fill.Color="GhostWhite" Text="[TongSLNhom]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" Padding="0, 0, 8, 0"/>
+        <TextObject Name="txtTongNhomTT" Left="530" Top="0" Width="188.2" Height="26" Border.Lines="All" Border.Color="LightGray" Fill.Color="GhostWhite" Text="[TongTienNhom]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DarkRed" Padding="0, 0, 10, 0"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="224.5" Width="718.2" Height="300">
+      <TextObject Name="txtTongCongLabel" Left="0" Top="6" Width="450" Height="30" Border.Lines="All" Border.Color="DarkSlateGray" Fill.Color="Cornsilk" Text="TỔNG CỘNG DOANH THU TOÀN BỘ:" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 10pt, style=Bold" TextFill.Color="DarkBlue" Padding="0, 0, 10, 0"/>
+      <TextObject Name="txtTongCongSL" Left="450" Top="6" Width="80" Height="30" Border.Lines="All" Border.Color="DarkSlateGray" Fill.Color="Cornsilk" Text="[TongSL]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 10pt, style=Bold" TextFill.Color="DarkBlue" Padding="0, 0, 8, 0"/>
+      <TextObject Name="txtTongCongTT" Left="530" Top="6" Width="188.2" Height="30" Border.Lines="All" Border.Color="DarkSlateGray" Fill.Color="Cornsilk" Text="[TongDoanhThu]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 10.5pt, style=Bold" TextFill.Color="DarkRed" Padding="0, 0, 10, 0"/>
+      
+      <TextObject Name="txtChartTitle" Left="0" Top="46" Width="718.2" Height="24" Text="📊 BIỂU ĐỒ CƠ CẤU DOANH THU THEO DANH MỤC" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 11pt, style=Bold" TextFill.Color="DarkSlateBlue"/>
+      <MSChartObject Name="Chart1" Left="40" Top="74" Width="638.2" Height="215" Border.Lines="All" Border.Color="Gainsboro">
+        <ChartSeries Name="Series1" DataSource="TongHop" XValueMember="TongHop.TenDanhMuc" YValueMembers="TongHop.TongTien" SeriesType="Pie"/>
+      </MSChartObject>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="528.5" Width="718.2" Height="24">
+      <LineObject Name="lineBottom" Left="0" Top="2" Width="718.2" Border.Color="LightSteelBlue"/>
+      <TextObject Name="txtPrintTime" Left="0" Top="6" Width="300" Height="16" Text="In lúc: [Date]" Font="Segoe UI, 8pt, style=Italic" TextFill.Color="Gray"/>
+      <TextObject Name="txtPage" Left="500" Top="6" Width="218.2" Height="16" Text="Trang [Page#] / [TotalPages#]" HorzAlign="Right" Font="Segoe UI, 8pt" TextFill.Color="Gray"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>
